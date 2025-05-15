@@ -3,17 +3,22 @@ import Navbar from '../components/Navbar'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-const Product = () => {
-    const [product, setProduct] = useState([]);
+const Actress = () => {
+    const [actresses, setActresses] = useState([]); // Rinominato da product a actresses
 
-    const getProduct = () => {
-        axios.get("https://lanciweb.github.io/demo/api/actresses").then((resp) => {
-            setProduct(resp.data)
-        });
+    const getActresses = () => { // Rinominato da getProduct a getActresses
+        axios.get("https://lanciweb.github.io/demo/api/actresses")
+            .then((resp) => {
+                console.log(resp.data); // Aggiungiamo un console.log per debug
+                setActresses(resp.data);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error); // Aggiungiamo gestione errori
+            });
     };
 
     useEffect(() => {
-        getProduct();
+        getActresses();
     }, []);
 
 
@@ -22,7 +27,7 @@ const Product = () => {
         <>
             <Navbar />
             {/* Container principale Bootstrap */}
-            <div className="container">
+            <div className="container mt-4"> {/* Aggiunto mt-4 per spaziatura */}
                 {/* Riga per il titolo */}
                 <div className="row mb-4">
                     <div className="col-12">
@@ -32,7 +37,7 @@ const Product = () => {
                 {/* Griglia responsive per le card */}
                 <div className="row g-3">
                     {/* Mapping dell'array delle attrici per creare le card */}
-                    {product.map((act) => (
+                    {actresses.map((act) => (
                         // Colonna responsive: 12 cols su mobile, 6 su tablet, 4 su desktop
                         <div
                             key={act.id}
@@ -70,4 +75,4 @@ const Product = () => {
     )
 }
 
-export default Product
+export default Actress    // Cambiato da Product a Actress
