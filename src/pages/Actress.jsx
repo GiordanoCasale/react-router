@@ -1,50 +1,55 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import Navbar from '../components/Navbar'  // Componente di navigazione
+import axios from 'axios'  // Libreria per le chiamate HTTP
+import { useState, useEffect } from 'react'  // Hooks di React
 
+// Componente principale Actress
 const Actress = () => {
-    const [actresses, setActresses] = useState([]); // Rinominato da product a actresses
+    // State per memorizzare l'array delle attrici
+    const [actresses, setActresses] = useState([]);
 
-    const getActresses = () => { // Rinominato da getProduct a getActresses
+    // Funzione per recuperare i dati delle attrici dall'API
+    const getActresses = () => {
         axios.get("https://lanciweb.github.io/demo/api/actresses")
             .then((resp) => {
-                console.log(resp.data); // Aggiungiamo un console.log per debug
-                setActresses(resp.data);
+                console.log(resp.data);  // Log dei dati ricevuti
+                setActresses(resp.data);  // Aggiornamento dello state
             })
             .catch(error => {
-                console.error("Error fetching data:", error); // Aggiungiamo gestione errori
+                console.error("Error fetching data:", error);  // Gestione degli errori
             });
     };
 
+    // Effect hook per chiamare getActresses al mount del componente
     useEffect(() => {
         getActresses();
     }, []);
 
-
-
     return (
         <>
+            {/* Inclusione della navbar */}
             <Navbar />
-            {/* Container principale Bootstrap */}
-            <div className="container mt-4"> {/* Aggiunto mt-4 per spaziatura */}
-                {/* Riga per il titolo */}
+
+            {/* Container principale con margine superiore */}
+            <div className="container mt-4">
+                {/* Sezione del titolo */}
                 <div className="row mb-4">
                     <div className="col-12">
                         <h1>Lista Attrici</h1>
                     </div>
                 </div>
-                {/* Griglia responsive per le card */}
+
+                {/* Griglia per le card con spacing tra le righe */}
                 <div className="row g-3">
-                    {/* Mapping dell'array delle attrici per creare le card */}
+                    {/* Iterazione dell'array actresses per creare una card per ogni attrice */}
                     {actresses.map((act) => (
-                        // Colonna responsive: 12 cols su mobile, 6 su tablet, 4 su desktop
+                        // Layout responsive per ogni card
                         <div
                             key={act.id}
                             className="col-12 col-md-6 col-lg-4">
-                            {/* Card Bootstrap con altezza al 100% */}
+                            {/* Card Bootstrap con altezza uniforme */}
                             <div className="card h-100">
-                                {/* Contenitore dell'immagine */}
+                                {/* Sezione immagine */}
                                 <div className="act-image">
                                     <img
                                         src={act.image}
@@ -53,13 +58,12 @@ const Actress = () => {
                                         style={{ height: '300px', objectFit: 'cover' }}
                                     />
                                 </div>
-                                {/* Corpo della card con layout flex column */}
+                                {/* Sezione informazioni */}
                                 <div className="card-body d-flex flex-column">
-                                    {/* Titolo della card con il nome dell'attrice */}
+                                    {/* Nome dell'attrice */}
                                     <h5 className="card-title">{act.name}</h5>
-                                    {/* Contenitore per le informazioni dell'attrice */}
+                                    {/* Dettagli biografici */}
                                     <div className="card-text">
-                                        {/* Dettagli biografici */}
                                         <p><strong>Birth Year: </strong>{act.birth_year}</p>
                                         <p><strong>Nationality: </strong>{act.nationality}</p>
                                         <p className="biography"><strong>Biography: </strong>{act.biography}</p>
@@ -75,4 +79,4 @@ const Actress = () => {
     )
 }
 
-export default Actress    // Cambiato da Product a Actress
+export default Actress
