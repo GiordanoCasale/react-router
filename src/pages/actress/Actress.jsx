@@ -40,18 +40,20 @@ const Actress = () => {
         <>
             {/* Navbar per la navigazione del sito */}
             <Navbar />
-
-            {/* Container principale con spaziatura superiore */}
-            <div className="container mt-4">
-                {/* Riga per l'header con il titolo */}
-                <div className="row mb-4">
+            {/* Container principale con padding verticale (py-5) e sfondo chiaro (bg-light) */}
+            <div className="container py-5 bg-light">
+                {/* Header section con margine inferiore ampio (mb-5) */}
+                <div className="row mb-5">
                     <div className="col-12">
-                        <h1>Lista Attrici</h1>
+                        {/* Titolo centrato (text-center) in blu (text-primary) con margine sotto (mb-4) */}
+                        <h1 className="text-center text-primary mb-4">Lista Attrici</h1>
+                        {/* Linea divisoria al 50% della larghezza (w-50) e centrata (mx-auto) */}
+                        <hr className="w-50 mx-auto" />
                     </div>
                 </div>
 
-                {/* Griglia responsive con gap tra le righe */}
-                <div className="row g-3">
+                {/* Griglia con spaziatura tra le card aumentata (g-4) */}
+                <div className="row g-4">
                     {/* Mappatura dell'array actresses per creare le card */}
                     {actresses.map((act) => (
                         // Contenitore della card con responsive breakpoints
@@ -62,12 +64,12 @@ const Actress = () => {
                             {/* Link alla pagina di dettaglio con ID dinamico */}
                             <Link
                                 to={`/actress/${act.id}`} // URL parametrico con ID
-                                className="text-decoration-none" // Rimuove sottolineatura link
+                                className="text-decoration-none text-dark" // Rimuove sottolineatura link
                             >
-                                {/* Card Bootstrap con altezza 100% */}
-                                <div className="card h-100">
-                                    {/* Contenitore immagine */}
-                                    <div className="act-image">
+                                {/* Card Bootstrap con altezza 100% e ombra leggera */}
+                                <div className="card h-100 shadow-sm">
+                                    {/* Contenitore immagine con posizionamento relativo per eventuali overlay */}
+                                    <div className="position-relative">
                                         <img
                                             src={act.image} // URL immagine
                                             className="card-img-top" // Stile immagine card
@@ -78,14 +80,22 @@ const Actress = () => {
                                             }}
                                         />
                                     </div>
-                                    {/* Body della card con layout flex */}
-                                    <div className="card-body d-flex flex-column">
-                                        {/* Titolo della card */}
-                                        <h5 className="card-title">{act.name}</h5>
+                                    {/* Body della card con layout flex e padding aumentato */}
+                                    <div className="card-body d-flex flex-column p-4">
+                                        {/* Titolo della card in blu con margine sotto */}
+                                        <h5 className="card-title text-primary mb-3">{act.name}</h5>
                                         {/* Contenuto testuale */}
                                         <div className="card-text">
-                                            <p><strong>Birth Year: </strong>{act.birth_year}</p>
-                                            <p><strong>Nationality: </strong>{act.nationality}</p>
+                                            {/* Paragrafi con margine inferiore per spaziatura */}
+                                            <p className="mb-2">
+                                                {/* Testo in grassetto per le etichette */}
+                                                <span className="fw-bold">Anno di nascita: </span>
+                                                {act.birth_year}
+                                            </p>
+                                            <p className="mb-0">
+                                                <span className="fw-bold">Nazionalità: </span>
+                                                {act.nationality}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
