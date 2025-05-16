@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../components/Navbar'  // Percorso corretto
 import axios from 'axios'  // Libreria per le chiamate HTTP
 import { useState, useEffect } from 'react'  // Hooks di React
+import { Link } from 'react-router-dom'  // Import del componente Link
 
 // Componente principale Actress
 const Actress = () => {
@@ -47,30 +48,32 @@ const Actress = () => {
                         <div
                             key={act.id}
                             className="col-12 col-md-6 col-lg-4">
-                            {/* Card Bootstrap con altezza uniforme */}
-                            <div className="card h-100">
-                                {/* Sezione immagine */}
-                                <div className="act-image">
-                                    <img
-                                        src={act.image}
-                                        className='card-img-top'
-                                        alt={act.name}
-                                        style={{ height: '300px', objectFit: 'cover' }}
-                                    />
-                                </div>
-                                {/* Sezione informazioni */}
-                                <div className="card-body d-flex flex-column">
-                                    {/* Nome dell'attrice */}
-                                    <h5 className="card-title">{act.name}</h5>
-                                    {/* Dettagli biografici */}
-                                    <div className="card-text">
-                                        <p><strong>Birth Year: </strong>{act.birth_year}</p>
-                                        <p><strong>Nationality: </strong>{act.nationality}</p>
-                                        <p className="biography"><strong>Biography: </strong>{act.biography}</p>
-                                        <p><strong>Awards: </strong>{act.awards}</p>
+                            <Link
+                                to={`/actress/${act.id}`}
+                                className="text-decoration-none"
+                            >
+                                {/* Card Bootstrap con altezza uniforme */}
+                                <div className="card h-100">
+                                    {/* Sezione immagine */}
+                                    <div className="act-image">
+                                        <img
+                                            src={act.image}
+                                            className="card-img-top"
+                                            alt={act.name}
+                                            style={{ height: '300px', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    {/* Sezione informazioni */}
+                                    <div className="card-body d-flex flex-column">
+                                        {/* Nome dell'attrice */}
+                                        <h5 className="card-title">{act.name}</h5>
+                                        <div className="card-text">
+                                            <p><strong>Birth Year: </strong>{act.birth_year}</p>
+                                            <p><strong>Nationality: </strong>{act.nationality}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

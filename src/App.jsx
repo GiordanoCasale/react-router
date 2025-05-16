@@ -9,25 +9,14 @@ import Detailactress from './pages/actress/Detailactress'
 // Componente principale dell'applicazione
 function App() {
   return (
-    <>
-      {/* BrowserRouter - Wrapper principale per il routing */}
-      <BrowserRouter>
-        {/* Routes - Container per le definizioni delle route */}
-        <Routes>
-          {/* Route per la Homepage - path: / */}
-          <Route path='/' Component={Homepage}></Route>
-
-          {/* Route per la pagina About - path: /about */}
-          <Route path='/about' Component={About}></Route>
-
-          {/* Route per la pagina Actress - path: /actress */}
-          <Route path='/actress' Component={Actress}>
-            <Route index Component={Actress} />
-            <Route path=':id' Component={Detailactress} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/actress' element={<Actress />} />
+        <Route path='/actress/:id' element={<Detailactress />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
