@@ -33,3 +33,4 @@ function App() {
 
 // Esportazione del componente App per l'utilizzo in altri file
 export default App
+
