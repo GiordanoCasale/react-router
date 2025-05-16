@@ -3,7 +3,8 @@ import { useState } from 'react'  // Hook per gestire lo state (non utilizzato)
 import { BrowserRouter, Routes, Route } from "react-router-dom"  // Componenti per il routing
 import Homepage from './pages/Homepage'  // Componente pagina Homepage
 import About from './pages/About'        // Componente pagina About
-import Actress from './pages/Actress'    // Componente pagina Actress
+import Actress from './pages/actress/Actress'    // Componente pagina Actress
+import Detailactress from './pages/actress/Detailactress'
 
 // Componente principale dell'applicazione
 function App() {
@@ -20,7 +21,10 @@ function App() {
           <Route path='/about' Component={About}></Route>
 
           {/* Route per la pagina Actress - path: /actress */}
-          <Route path='/actress' Component={Actress}></Route>
+          <Route path='/actress' Component={Actress}>
+            <Route index Component={Actress} />
+            <Route path=':id' Component={Detailactress} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

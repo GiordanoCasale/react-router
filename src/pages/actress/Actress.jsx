@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/Navbar'  // Componente di navigazione
+import Navbar from '../../components/Navbar'  // Percorso corretto
 import axios from 'axios'  // Libreria per le chiamate HTTP
 import { useState, useEffect } from 'react'  // Hooks di React
 
